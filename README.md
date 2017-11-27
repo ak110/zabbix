@@ -42,5 +42,5 @@
 
 ## 参考
 
-- https://github.com/RichardKav/zabbix-nvidia-smi-integration
+- https://github.com/woyteck1/zabbix-nvidia-smi-integration
 - https://github.com/wangmuy/zabbix-agent-nvidia
