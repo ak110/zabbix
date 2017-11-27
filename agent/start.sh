@@ -8,7 +8,7 @@ if [ -n "$ZA_Hostname" ] ; then
 fi
 
 if [ -n "$ZA_Server" ] ; then
-  sed "s@^Server=.*@Server=127.0.0.1,172.0.0.0/8,$ZA_Server@g" -i /etc/zabbix/zabbix_agentd.conf
+  sed "s@^Server=.*@Server=127.0.0.1,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,$ZA_Server@g" -i /etc/zabbix/zabbix_agentd.conf
   sed "s@^ServerActive=.*@ServerActive=$ZA_Server@g" -i /etc/zabbix/zabbix_agentd.conf
 fi
 
