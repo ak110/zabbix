@@ -23,6 +23,10 @@
     cd server
     docker-compose up -d
 
+## 動作確認
+
+    docker exec zabbix-server zabbix_get -s IPアドレス -k gpu.discovery
+
 ## 参考
 
 - https://github.com/woyteck1/zabbix-nvidia-smi-integration
