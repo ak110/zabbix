@@ -1,10 +1,5 @@
 - hosts: all
   tasks:
-    - file: path=/etc/zabbix/zabbix_agentd.d/ state=directory owner=root group=root mode=0755
-      become: True
-    - copy: src=custom.conf dest=/etc/zabbix/zabbix_agentd.d/
-      become: True
-
     - name: download .deb for Debian 9 (Stretch)
       get_url:
         url="http://repo.zabbix.com/zabbix/3.4/debian/pool/main/z/zabbix-release/zabbix-release_3.4-1+stretch_all.deb"
@@ -23,5 +18,12 @@
     - apt: deb=/tmp/zabbix.deb
       become: True
     - apt: name=zabbix-agent update_cache=yes
+      become: True
+
+    - copy: src=custom.conf dest=/etc/zabbix/zabbix_agentd.d/
+      become: True
+    - lineinfile: dest=/etc/zabbix/zabbix_agentd.conf regexp='^Hostname=' line='#Hostname=Zabbix server'
+      become: True
+    - lineinfile: dest=/etc/zabbix/zabbix_agentd.conf regexp='^Server=' line='Server=127.0.0.1,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16'
       become: True
 
