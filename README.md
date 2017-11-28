@@ -13,21 +13,8 @@
 
 ### agent
 
-    cd agent
-    docker build --tag=zabbix-agent .
-    nvidia-docker run \
-        --detach \
-        --restart=unless-stopped \
-        --net=host \
-        --privileged \
-        --volume=/:/rootfs \
-        --volume=/var/run:/var/run \
-        --publish=10050:10050 \
-        --env="ZA_Hostname=$HOSTNAME" \
-        --env="ZA_Server=<サーバアドレス>" \
-        --name=zabbix-agent \
-        zabbix-agent
-
+    cd ansible-agent
+    ansible-playbook zabbix-agent.yml -l localhost
 
 ## 停止方法
 
@@ -35,10 +22,6 @@
 
     cd server
     docker-compose up -d
-
-### agent
-
-    docker rm -f zabbix-agent
 
 ## 参考
 
