@@ -16,8 +16,8 @@
 ### agent
 
     cd ansible-agent
-    ansible-playbook zabbix-agent.yml -l localhost
-    sudo service zabbix-agent restart
+    ansible-playbook zabbix-agent.yml
+    ansible -m shell -a 'sudo service zabbix-agent restart' all
 
 ## 停止方法
 

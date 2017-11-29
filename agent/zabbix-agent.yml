@@ -1,4 +1,7 @@
 - hosts: all
+  environment:
+    http_proxy: "{{ lookup('env', 'http_proxy') }}"
+    https_proxy: "{{ lookup('env', 'https_proxy') }}"
   tasks:
     - name: download .deb for Debian 9 (Stretch)
       get_url:
