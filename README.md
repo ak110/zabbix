@@ -4,6 +4,8 @@
 
 ### server
 
+    sudo apt install fonts-ipafont
+
     cd server
     docker-compose up -d
 
