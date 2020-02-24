@@ -19,7 +19,7 @@
     - apt: deb=/tmp/zabbix.deb
       become: True
       when: (ansible_distribution == "Debian" and ansible_facts.lsb.codename != "bullseye") or ansible_distribution == "Ubuntu"
-    - apt: name=zabbix-agent update_cache=yes
+    - apt: name=zabbix-agent update_cache=yes state=latest
       become: True
 
     - copy: src=custom.conf dest=/etc/zabbix/zabbix_agentd.d/
