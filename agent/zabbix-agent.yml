@@ -1,5 +1,6 @@
 - hosts: all
-  gather_subset: "!ohai"
+  gather_subset:
+    - "!ohai"
   environment:
     http_proxy: "{{ lookup('env', 'http_proxy') }}"
     https_proxy: "{{ lookup('env', 'https_proxy') }}"
@@ -27,5 +28,12 @@
     - lineinfile: dest=/etc/zabbix/zabbix_agentd.conf regexp='^Hostname=' line='#Hostname=Zabbix server'
       become: True
     - lineinfile: dest=/etc/zabbix/zabbix_agentd.conf regexp='^Server=' line='Server=127.0.0.1,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16'
+      become: True
+
+    - systemd:
+        name: zabbix-agent.service
+        enabled: yes
+        state: started
+        daemon_reload: yes
       become: True
 
