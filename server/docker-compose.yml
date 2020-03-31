@@ -2,7 +2,6 @@ version: "3"
 services:
   zabbix-web:
     image: zabbix/zabbix-web-nginx-mysql:latest
-    container_name: zabbix-web
     restart: unless-stopped
     ports:
       - "40080:80"
@@ -23,7 +22,6 @@ services:
 
   zabbix-server:
     image: zabbix/zabbix-server-mysql:latest
-    container_name: zabbix-server
     restart: unless-stopped
     ports:
       - "10051:10051"
@@ -42,7 +40,6 @@ services:
 
   zabbix-db:
     image: mysql:latest
-    container_name: zabbix-db
     restart: unless-stopped
     command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
     volumes:
@@ -54,6 +51,8 @@ services:
       MYSQL_PASSWORD: zabbix
     networks:
       - zabbix_network
+    cap_add:
+      - SYS_NICE  # https://stackoverflow.com/questions/55559386/how-to-fix-mbind-operation-not-permitted-in-mysql-error-log
 
 networks:
   zabbix_network:
