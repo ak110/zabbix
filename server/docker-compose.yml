@@ -4,7 +4,7 @@ services:
     image: zabbix/zabbix-web-nginx-mysql:latest
     restart: unless-stopped
     ports:
-      - "40080:80"
+      - "40080:8080"
     volumes:
       # ビルドするのが面倒なのでホストにIPAフォントを入れている前提にする本末転倒っぷり
       - /usr/share/fonts/opentype/ipafont-gothic/ipagp.ttf:/usr/share/zabbix/fonts/graphfont.ttf:ro
