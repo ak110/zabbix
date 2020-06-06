@@ -15,8 +15,7 @@
 
 ### agent
 
-    cd agent
-    ansible-playbook zabbix-agent.yml
+    ansible-playbook agent/zabbix-agent.yml
 
 ## 停止方法
 
