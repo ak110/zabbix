@@ -38,3 +38,8 @@
     cd server
     docker-compose pull && docker-compose down && docker-compose up -d && docker-compose logs -ft
 
+## SQL (何かあったとき用)
+
+    cd server
+    docker-compose exec zabbix-db mysql -uzabbix -pzabbix -Dzabbix
+
